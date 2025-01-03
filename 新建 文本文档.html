@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas 动画</title>
+    <style>
+        body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0; }
+        canvas { border: 1px solid black; }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var x = 100;
+        var y = 100;
+        var speed = 2;
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);  // 清除之前的画面
+            ctx.fillStyle = "red";
+            ctx.fillRect(x, y, 50, 50);  // 绘制一个矩形
+
+            x += speed;
+            if (x > canvas.width) {
+                x = -50;  // 如果矩形超出画布右边界，则重置位置
+            }
+
+            requestAnimationFrame(animate);  // 递归调用动画函数
+        }
+
+        animate();  // 启动动画
+    </script>
+</body>
+</html>
